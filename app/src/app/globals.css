@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #010104;
+  color: #f8fafc;
+  font-family: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  margin: 0;
+}
+
+.bg-noise {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.09) 0.8px, transparent 0);
+  background-size: 3px 3px;
+}
+
+.head-motion {
+  animation: head-bob 9s ease-in-out infinite alternate;
+}
+
+@keyframes head-bob {
+  0% {
+    transform: translate3d(0, 0, 0) rotateX(1.2deg) rotateZ(-0.6deg);
+  }
+  50% {
+    transform: translate3d(0, -1.5%, 0) rotateX(0deg) rotateZ(0.8deg);
+  }
+  100% {
+    transform: translate3d(0, 0.4%, 0) rotateX(-0.8deg) rotateZ(-0.3deg);
+  }
+}
+
+.ambient-panel {
+  width: min(520px, 70vw);
+  height: min(520px, 70vw);
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 140px rgba(129, 140, 248, 0.25);
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(226, 232, 240, 0.12),
+    rgba(15, 23, 42, 0.25) 45%,
+    rgba(2, 6, 23, 0.8) 80%
+  );
+  animation: ambient-pulse 16s ease-in-out infinite;
+  filter: blur(10px);
+  opacity: 0.35;
+}
+
+@keyframes ambient-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  40% {
+    transform: scale(1.08);
+    opacity: 0.5;
+  }
+  60% {
+    transform: scale(1.02);
+    opacity: 0.4;
+  }
+}
+
+.ambient-sparkle {
+  animation: sparkle 6s ease-in-out infinite;
+  filter: blur(0.5px);
+}
+
+@keyframes sparkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.4) translate3d(0, 0, 0);
+  }
+  45% {
+    opacity: 0.9;
+    transform: scale(1.1) translate3d(0, -8px, 0);
+  }
+  60% {
+    opacity: 0.2;
+    transform: scale(0.8) translate3d(0, 6px, 0);
+  }
+}
+
+.asset-card {
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 1.15rem;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+}
+
+.asset-card:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+@keyframes rotor-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
